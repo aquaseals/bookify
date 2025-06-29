@@ -1,9 +1,11 @@
 require('dotenv').config()
 const express = require('express')
-const axios = require('axios')
 const { queryObjects } = require('v8')
 const QueryString = require('qs')
 const { stat } = require('fs')
+
+var LocalStorage = require('node-localstorage').LocalStorage,
+localStorage = new LocalStorage('./scratch');
 
 const app = express()
 const PORT = process.env.PORT || 3000
@@ -55,7 +57,7 @@ function generateRandomString(length) {
     return text;
 }
 
-app.get('/callback', function(req, res) {
+app.get('/callback', async function(req, res) {
   var code = req.query.code || null;
   var state = req.query.state || null;
 
@@ -66,7 +68,7 @@ app.get('/callback', function(req, res) {
         error: 'state_mismatch'
       }));
   } else{
-    var authOptions = {
+    let authOptions = {
       url: 'https://accounts.spotify.com/api/token',
       form: {
         code: code,
@@ -79,10 +81,42 @@ app.get('/callback', function(req, res) {
       },
       json: true
     };
+    console.log(authOptions)
+    localStorage.setItem('authOption', JSON.stringify(authOptions))
+
+    const response = await fetch(authOptions.url, {
+        method: 'POST',
+        headers: authOptions.headers,
+        body: new URLSearchParams(authOptions.form)
+    });
+
+    if (response.ok) {
+        const data = await response.json();
+        const { access_token, refresh_token } = data;
+        console.log('Access token:', access_token);
+        console.log('Refresh token:', refresh_token)
+    } else {
+        console.error('Error:', await response.text());
+    }
   }
-  console.log(authOptions)
 });
 
 app.listen(PORT, () => {
     console.log(`Server is running on http://127.0.0.1:${PORT}`)
 })
+
+// Data Functions
+async function getProfile(accessToken) {
+    let authOption = JSON.parse(localStorage.getItem('authOption'))
+    accessToken = authOption.accessToken
+    
+    const response = await fetch('https://api.spotify.com/v1/me', {
+    headers: {
+      Authorization: 'Bearer ' + accessToken
+    }
+  });
+
+    const data = await response.json();
+    return data
+}
+

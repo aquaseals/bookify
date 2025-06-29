@@ -3,6 +3,7 @@
     "axios": "^1.10.0",
     "cookie-parser": "^1.4.7",
     "dotenv": "^17.0.0",
-    "express": "^5.1.0"
+    "express": "^5.1.0",
+    "node-localstorage": "^3.0.5"
   }
 }
