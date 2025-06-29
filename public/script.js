@@ -1,12 +1,6 @@
-window.env = {
-    CLIENT_ID: '<%= process.env.CLIENT_ID %>',
-    REDIRECT_URI: '<%= process.env.REDIRECT_URI %>',
-    CLIENT_SECRET: '<%= process.env.CLIENT_SECRET %>'
-};
-
-let clientID = window.env.CLIENT_ID
-let redirectURI = window.env.REDIRECT_URI
-let clientSECRET = window.env.CLIENT_SECRET
+let clientID = '2757b9bf2e4649e7903aaefbc856adca'
+let redirectURI = window.location.origin + '/callback'
+let clientSECRET = '1db54a4fd96a40fb818461ef3a3149e7'
 
 //let isConnected = false
 let storedState = ''
@@ -40,46 +34,53 @@ document.getElementById('connect').addEventListener('click', async function conn
         // get new access token
         refreshTokens()
     } else {
-        fetch('https://accounts.spotify.com/authorize?' + // getting state and code  
-            QueryString.stringify({
+        let params = new URLSearchParams({
                     response_type: 'code',
                     client_id: clientID,
                     scope: scopes, 
                     redirect_uri: redirectURI,
                     state: state
-                })).then (response => {
-                    if(!response.ok) {
-                        console.log('ERROR network response was no t ok')
-                    }
-                    state = response.state
-                    code = response.code
+                }).toString()
+        console.log(params)
 
-                    console.log({ state, code })
+        window.location.href = 'https://accounts.spotify.com/authorize?' + params
+        let urlParams = new URLSearchParams(window.location.search)
+        state = urlParams.get('state')
+        code = urlParams.get('code')
+        error = urlParams.get('error')
+        
+        if (error) {
+            console.log(`auth failed`, error)
+        } else {
+            console.log({ state, code })
+        }
+            
+        if (state === null || state !== storedState) {
+            console.log(state, storedState);
+            console.log(`invalid state`)
+            //window.location.href = window.location.origin + '/state_mismatch'
+        } else {
+            authOptions = {
+            //url: 'https://accounts.spotify.com/api/token', // getting auth token to get refresh and access token
+            headers: {
+                'content-type': 'application/x-www-form-urlencoded',
+                'Authorization': 'Basic ' + (new Buffer.from(clientID + ':' + clientSECRET).toString('base64'))
+            },
+            body: new URLSearchParams({
+                code: code,
+                redirect_uri: redirectURI,
+                grant_type: 'authorization_code'
+            })
+            };
 
-                    if (state === null || state !== storedState) {
-                        console.log(state, storedState);
-                        console.log(`invalid state`)
-                        //window.location.href = window.location.origin + '/state_mismatch'
-                    } else {
-                        authOptions = {
-                        url: 'https://accounts.spotify.com/api/token', // getting auth token to get refresh and access token
-                        form: {
-                            code: code,
-                            redirect_uri: redirectURI,
-                            grant_type: 'authorization_code'
-                        },
-                        headers: {
-                            'content-type': 'application/x-www-form-urlencoded',
-                            'Authorization': 'Basic ' + (new Buffer.from(clientID + ':' + clientSECRET).toString('base64'))
-                        },
-                        json: true
-                        };
+            let tokens = await fetch('https://accounts.spotify.com/api/token', authOptions)
+            let data = await tokens.json()
 
-                        access_token = getTokens(authOptions)[0]
-                        refresh_token = getTokens(authOptions)[1]
+            access_token = getTokens(authOptions.body.toString())[0]
+            refresh_token = getTokens(authOptions.body.toString())[1]
 
-                    }
-                })
+        }
+    
         
     }
     
@@ -91,6 +92,12 @@ async function getTokens(authOptions) {
         headers: authOptions.headers,
         body: new URLSearchParams(authOptions.form)
     });
+
+    window.location.href = 'https://accounts.spotify.com/authorize?' + params
+        let urlParams = new URLSearchParams(window.location.search)
+        state = urlParams.get('state')
+        code = urlParams.get('code')
+        error = urlParams.get('error')
 
     if (response.ok) {
         const data = await response.json();
