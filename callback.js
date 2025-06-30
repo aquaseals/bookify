@@ -23,7 +23,7 @@ const onLoad = async () => {
     } else {
         console.log(clientID, clientSECRET)
         let authOptions = {
-        //url: 'https://accounts.spotify.com/api/token', 
+        method: "POST",
         headers: {
             'content-type': 'application/x-www-form-urlencoded',
             'Authorization': 'Basic ' + btoa(clientID + ':' + clientSECRET)
