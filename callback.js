@@ -92,11 +92,11 @@ return {name, pfp}
 
 // saved books in library 
 async function getBooks() {
-const url = "https://api.spotify.com/v1/me/audiobooks"
+const url = "https://api.spotify.com/v1/me/audiobooks?limit=50"
 const payload = {
     method: 'GET',
     headers: {
-        'Authorization': 'Bearer ' + access_token
+        'Authorization': 'Bearer ' + access_token,
     },
 }
 const body = await fetch(url, payload)
@@ -112,9 +112,12 @@ let books = response.items.map(item => ({
 return {numOfBooks, books}
 }
 
-// hrs reading per day, per month, per year
+// top authors
 
-// top book genres
+
+// fiction vs non fiction stats
+
+// top 5 genres
 
 /*
 TODO
@@ -123,3 +126,20 @@ TODO
 - go to main page and supply all found data
 
 */
+
+async function askAI(message) {
+    const url = "https://ai.hackclub.com/chat/completions"
+    const payload = {
+        "method" : "POST",
+        headers : {
+            "Content-Type": "application/json"
+        },
+        body : JSON.stringify({
+            "messages" : [{"role": "user", "content": message}]
+        })
+    }
+
+    let body = await fetch(url, payload)
+    let response = await body.json()
+    return response
+}
