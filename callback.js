@@ -21,6 +21,7 @@ const onLoad = async () => {
         console.log(`invalid state`)
         window.location.href = window.location.origin + '/bookify/state_mismatch'
     } else {
+        console.log(clientID, clientSECRET)
         let authOptions = {
         //url: 'https://accounts.spotify.com/api/token', 
         headers: {
