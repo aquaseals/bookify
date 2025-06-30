@@ -1,5 +1,5 @@
 let clientID = '2757b9bf2e4649e7903aaefbc856adca'
-let redirectURI = window.location.origin + '/callback'
+let redirectURI = window.location.origin + '/bookify/callback'
 let clientSECRET = '1db54a4fd96a40fb818461ef3a3149e7'
 
 //let isConnected = false
