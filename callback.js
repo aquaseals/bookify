@@ -13,6 +13,29 @@ const onLoad = async () => {
     let code = urlParams.get('code')
     let error = urlParams.get('error')
 
+    async function refreshTokens() {
+    const url = "https://accounts.spotify.com/api/token"
+    const payload = {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/x-www-form-urlencoded'
+        },
+        body: new URLSearchParams({
+            grant_type: 'refresh_token',
+            refresh_token: refresh_token,
+            client_id: clientID
+        }),
+    }
+    const body = await fetch(url, payload)
+    const response = await body.json()
+
+    access_token = response.access_token
+    if (response.refresh_token) {
+        refresh_token = response.refresh_token
+    }
+    return {access_token, refresh_token}
+}
+
     if (error) {
         console.log(`auth failed`, error)
     } else {
@@ -50,32 +73,11 @@ const onLoad = async () => {
 
 window.onload = onLoad
 
-async function refreshTokens() {
-    const url = "https://accounts.spotify.com/api/token"
-    const payload = {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/x-www-form-urlencoded'
-        },
-        body: new URLSearchParams({
-            grant_type: 'refresh_token',
-            refresh_token: refresh_token,
-            client_id: clientID
-        }),
-    }
-    const body = await fetch(url, payload)
-    const response = await body.json()
 
-    access_token = response.access_token
-    if (response.refresh_token) {
-        refresh_token = response.refresh_token
-    }
-    return {access_token, refresh_token}
-}
 
 /*
 TODO
-- create getTokens function to get access and refresh token
+- create refreshTokens function to get access and refresh token -> done
 - create API calls for each type of data need
 - go to main page and supply all found data
 
