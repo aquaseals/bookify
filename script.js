@@ -34,7 +34,9 @@ document.getElementById('connect').addEventListener('click', async function conn
     if (access_token && refresh_token) {
         // get new access token
         //refreshTokens()
+        console.log(`already have access, can go straight to the page`)
     } else {
+        console.log(`asking for access now`)
         let params = new URLSearchParams({
                     response_type: 'code',
                     client_id: clientID,
