@@ -1,3 +1,5 @@
+// find access and refresh tokens
+// pass onto main page to do api calls for data
 const onLoad = async () => {
     const storedState = localStorage.getItem('state') ?? ''
     let urlParams = new URLSearchParams(window.location.search)
@@ -20,7 +22,7 @@ const onLoad = async () => {
         //url: 'https://accounts.spotify.com/api/token', 
         headers: {
             'content-type': 'application/x-www-form-urlencoded',
-            'Authorization': 'Basic ' + (new Buffer.from(clientID + ':' + clientSECRET).toString('base64'))
+            'Authorization': 'Basic ' + btoa(clientID + ':' + clientSECRET)
         },
         body: new URLSearchParams({
             code: code,
