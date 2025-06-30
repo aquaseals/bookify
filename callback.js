@@ -148,7 +148,7 @@ async function topGenres(numOfBooks, books) {
 // 3 book recs
 async function recommend(books) {
     let booksString = JSON.stringify(books, null, 2)
-    let recs = await askAI(`Return ONLY a JavaScript string with 3 book recommendations inspired by these books. Format: "Book Title 1/Book Title 2/Book Title 3". No explanation, no additional text, just the string:\n${booksString}`)
+    let recs = await askAI(`Return ONLY a JavaScript string with 3 book recommendations inspired by these books. Format: Book Title 1/Book Title 2/Book Title 3. No explanation, no additional text, just the string:\n${booksString}`)
     return recs
 }
 
