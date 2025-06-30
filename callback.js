@@ -6,10 +6,10 @@ const onLoad = async () => {
     let clientSECRET = '1db54a4fd96a40fb818461ef3a3149e7'
     const storedState = localStorage.getItem('state') ?? ''
     let urlParams = new URLSearchParams(window.location.search)
-    state = urlParams.get('state')
-    code = urlParams.get('code')
-    error = urlParams.get('error')
-    
+    let state = urlParams.get('state')
+    let code = urlParams.get('code')
+    let error = urlParams.get('error')
+
     if (error) {
         console.log(`auth failed`, error)
     } else {
@@ -21,7 +21,7 @@ const onLoad = async () => {
         console.log(`invalid state`)
         window.location.href = window.location.origin + '/bookify/state_mismatch'
     } else {
-        authOptions = {
+        let authOptions = {
         //url: 'https://accounts.spotify.com/api/token', 
         headers: {
             'content-type': 'application/x-www-form-urlencoded',
