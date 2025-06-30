@@ -63,7 +63,8 @@ let genreSection = document.getElementsByClassName('genre-list')[0]
 for (i=1; i<5; i++) {
     let genre = document.createElement('h3')
     genre.style.color = "black !important"
-    let g = genre[i-1]
+    let g = genres[i-1]
     genre.innerHTML = `${i}. ${g}`
     genreSection.appendChild(genre)
 }
+
