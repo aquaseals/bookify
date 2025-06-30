@@ -3,7 +3,6 @@ let redirectURI = window.location.origin + '/callback'
 let clientSECRET = '1db54a4fd96a40fb818461ef3a3149e7'
 
 //let isConnected = false
-let storedState = ''
 let access_token;
 let refresh_token;
 let code;
@@ -21,7 +20,7 @@ function generateRandomString(length) {
 document.getElementById('connect').addEventListener('click', async function connectAcc(){
     console.log('lol')
     let state = generateRandomString(16)
-    storedState = state
+    localStorage.setItem('state', state)
     const scopes = [
         'user-read-recently-played',
         'user-read-currently-playing',
@@ -46,44 +45,6 @@ document.getElementById('connect').addEventListener('click', async function conn
         console.log(params)
 
         window.location.href = 'https://accounts.spotify.com/authorize?' + params
-        let urlParams = new URLSearchParams(window.location.search)
-        state = urlParams.get('state')
-        code = urlParams.get('code')
-        error = urlParams.get('error')
-        
-        if (error) {
-            console.log(`auth failed`, error)
-        } else {
-            console.log({ state, code })
-        }
-            
-        if (state === null || state !== storedState) {
-            console.log(state, storedState);
-            console.log(`invalid state`)
-            window.location.href = window.location.origin + '/state_mismatch'
-        } else {
-            authOptions = {
-            //url: 'https://accounts.spotify.com/api/token', // getting auth token to get refresh and access token
-            headers: {
-                'content-type': 'application/x-www-form-urlencoded',
-                'Authorization': 'Basic ' + (new Buffer.from(clientID + ':' + clientSECRET).toString('base64'))
-            },
-            body: new URLSearchParams({
-                code: code,
-                redirect_uri: redirectURI,
-                grant_type: 'authorization_code'
-            })
-            };
-
-            let tokens = await fetch('https://accounts.spotify.com/api/token', authOptions)
-            let data = await tokens.json()
-
-            access_token = getTokens(authOptions.body.toString())[0]
-            refresh_token = getTokens(authOptions.body.toString())[1]
-
-        }
-    
-        
     }
     
 })
