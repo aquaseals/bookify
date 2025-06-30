@@ -103,7 +103,7 @@ const body = await fetch(url, payload)
 const response = await body.json()
 
 let numOfBooks = response.total
-let authors = response.items.authors[0].name 
+let authors = response.items.authors.name 
 let covers = response.images[0].url
 let bookName = response.name
 return {numOfBooks, authors, covers, bookName}
