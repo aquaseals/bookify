@@ -1,11 +1,9 @@
 // find access and refresh tokens
 // pass onto main page to do api calls for data
-
-let clientID = '2757b9bf2e4649e7903aaefbc856adca'
-let redirectURI = window.location.origin + '/bookify/callback'
-let clientSECRET = '1db54a4fd96a40fb818461ef3a3149e7'
-
 const onLoad = async () => {
+    let clientID = '2757b9bf2e4649e7903aaefbc856adca'
+    let redirectURI = window.location.origin + '/bookify/callback'
+    let clientSECRET = '1db54a4fd96a40fb818461ef3a3149e7'
     const storedState = localStorage.getItem('state') ?? ''
     let urlParams = new URLSearchParams(window.location.search)
     state = urlParams.get('state')
