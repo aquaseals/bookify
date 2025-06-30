@@ -30,9 +30,10 @@ document.getElementById('connect').addEventListener('click', async function conn
         'user-library-read',
         'user-read-private'
     ].join(' ')
+
     if (access_token && refresh_token) {
         // get new access token
-        refreshTokens()
+        //refreshTokens()
     } else {
         let params = new URLSearchParams({
                     response_type: 'code',
