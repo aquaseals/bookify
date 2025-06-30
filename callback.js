@@ -13,46 +13,6 @@ const onLoad = async () => {
     let code = urlParams.get('code')
     let error = urlParams.get('error')
 
-    async function refreshTokens() {
-    const url = "https://accounts.spotify.com/api/token"
-    const payload = {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/x-www-form-urlencoded'
-        },
-        body: new URLSearchParams({
-            grant_type: 'refresh_token',
-            refresh_token: refresh_token,
-            client_id: clientID
-        }),
-    }
-    const body = await fetch(url, payload)
-    const response = await body.json()
-
-    access_token = response.access_token
-    if (response.refresh_token) {
-        refresh_token = response.refresh_token
-    }
-    return {access_token, refresh_token}
-    }
-
-    // user info
-    async function getProfile() {
-    const url = "https://api.spotify.com/v1/me"
-    const payload = {
-        method: 'GET',
-        headers: {
-            'Authorization': 'Basic ' + btoa(clientID + ':' + clientSECRET)
-        },
-    }
-    const body = await fetch(url, payload)
-    const response = await body.json()
-
-    let name = response.display_name
-    let pfp = response.images.url
-    return {name, pfp}
-    }
-
     if (error) {
         console.log(`auth failed`, error)
     } else {
@@ -90,7 +50,45 @@ const onLoad = async () => {
 
 window.onload = onLoad
 
+async function refreshTokens() {
+const url = "https://accounts.spotify.com/api/token"
+const payload = {
+    method: 'POST',
+    headers: {
+        'Content-Type': 'application/x-www-form-urlencoded'
+    },
+    body: new URLSearchParams({
+        grant_type: 'refresh_token',
+        refresh_token: refresh_token,
+        client_id: clientID
+    }),
+}
+const body = await fetch(url, payload)
+const response = await body.json()
 
+access_token = response.access_token
+if (response.refresh_token) {
+    refresh_token = response.refresh_token
+}
+return {access_token, refresh_token}
+}
+
+// user info
+async function getProfile() {
+const url = "https://api.spotify.com/v1/me"
+const payload = {
+    method: 'GET',
+    headers: {
+        'Authorization': 'Basic ' + access_token
+    },
+}
+const body = await fetch(url, payload)
+const response = await body.json()
+
+let name = response.display_name
+let pfp = response.images[0]?.url
+return {name, pfp}
+}
 
 // finished books and currently listening books
 
