@@ -19,5 +19,13 @@ for (let i=0; i<bookInfo.numOfBooks; i++) {
     totChapters += bookInfo.books[i].chapters
 }
 document.getElementById(`total-chapters`).innerHTML = totChapters
-document.getElementById(`avg-chapters`).innerHTML = totChapters/bookInfo.numOfBooks
+document.getElementById(`avg-chapters`).innerHTML = Math.round(totChapters/bookInfo.numOfBooks)
+
+let authors = authorInfo.split(",")
+let authorSection = document.getElementsByClassName('author-list')[0]
+for (i=1; i<4; i++) {
+    let author = document.createElement('h4')
+    author.innerHTML = `${i}. ${authors[i-1]}`
+    authorSection.appendChild(author)
+}
 

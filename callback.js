@@ -127,28 +127,28 @@ return {numOfBooks, books}
 // top authors
 async function topAuthors(numOfBooks, books) {
     let booksString = JSON.stringify(books, null, 2)
-    let authors = await askAI(`Return ONLY a JavaScript array with the top 3 authors from these ${numOfBooks} books. Format: ["Author 1", "Author 2", "Author 3"]. No explanation, no additional text, just the array:\n${booksString}`)
+    let authors = await askAI(`Return ONLY a JavaScript string with the top 3 authors from these ${numOfBooks} books. Format: "Author 1,Author 2,Author 3". No explanation, no additional text, just the string:\n${booksString}`)
     return authors
 }
 
 // fiction vs non fiction stats
 async function fictionVsNonfiction(numOfBooks, books) {
     let booksString = JSON.stringify(books, null, 2)    
-    let percents = await askAI(`Return ONLY a JavaScript array with fiction and non-fiction percentages from these ${numOfBooks} books. Format: [fiction_percentage, nonfiction_percentage] where numbers are integers that sum to 100. No explanation, no additional text, just the array:\n${booksString}`)
+    let percents = await askAI(`Return ONLY a JavaScript string with fiction and non-fiction percentages from these ${numOfBooks} books. Format: 'fiction_percentage nonfiction_percentage' where numbers are integers that sum to 100. No explanation, no additional text, just the array:\n${booksString}`)
     return percents
 }
 
 // top 5 genres
 async function topGenres(numOfBooks, books) {
     let booksString = JSON.stringify(books, null, 2)
-    let genres = await askAI(`Return ONLY a JavaScript array with the top 5 genres from these ${numOfBooks} books. Format: ["Genre 1", "Genre 2", "Genre 3", "Genre 4", "Genre 5"]. No explanation, no additional text, just the array:\n${booksString}`)
+    let genres = await askAI(`Return ONLY a JavaScript string with the top 5 genres from these ${numOfBooks} books. Format: "Genre 1,Genre 2,Genre 3,Genre 4,Genre 5". No explanation, no additional text, just the string:\n${booksString}`)
     return genres
 }
 
 // 3 book recs
 async function recommend(books) {
     let booksString = JSON.stringify(books, null, 2)
-    let recs = await askAI(`Return ONLY a JavaScript array with 3 book recommendations based on these books. Format: ["Book Title 1", "Book Title 2", "Book Title 3"]. No explanation, no additional text, just the array:\n${booksString}`)
+    let recs = await askAI(`Return ONLY a JavaScript string with 3 book recommendations based on these books. Format: "Book Title 1,Book Title 2,Book Title 3". No explanation, no additional text, just the string:\n${booksString}`)
     return recs
 }
 
