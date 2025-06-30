@@ -200,7 +200,10 @@ button:hover {
 
         .rec-grid {
             display: flex;
-            flex-direction: row;
+            flex-wrap: wrap;
+            gap: 1.5vw;
+            justify-content: center;
+            margin-top: 2vw;
         }
 
         .rec-grid, .genre-tag, .author-tag {
