@@ -141,7 +141,7 @@ async function fictionVsNonfiction(numOfBooks, books) {
 // top 5 genres
 async function topGenres(numOfBooks, books) {
     let booksString = JSON.stringify(books, null, 2)
-    let genres = await askAI(`Return ONLY a JavaScript string with the top 5 genres from these ${numOfBooks} books. Format: "Genre 1,Genre 2,Genre 3,Genre 4,Genre 5". No explanation, no additional text, just the string:\n${booksString}`)
+    let genres = await askAI(`Return ONLY a JavaScript string with the top 5 genres based on these ${numOfBooks} books. Format: Genre 1/Genre 2/Genre 3/Genre 4/Genre 5. No explanation, no additional text, just the string:\n${booksString}`)
     return genres
 }
 
