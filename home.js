@@ -54,11 +54,12 @@ let percents = fictionInfo.split(" ")
 let f = percents[0].slice(1)
 let nf = percents[1].slice(0, -1)
 document.getElementById(`fiction-percent`).innerHTML = `${f}%`
-document.getElementById(`fiction-percent`).innerHTML = `${nf}%`
+document.getElementById(`nonfiction-percent`).innerHTML = `${nf}%`
 
 let genres = genreInfo.split(",")
-genres[0] = genres[0].slice(2)
-genres[4] = genres[4].slice(-2)
+genres.slice(0, 5)
+genres[0] = genres[0].slice(1)
+genres[4] = genres[4].slice(0, -2)
 let genreSection = document.getElementsByClassName('genre-list')[0]
 for (i=1; i<5; i++) {
     let genre = document.createElement('h3')
