@@ -113,11 +113,22 @@ return {numOfBooks, books}
 }
 
 // top authors
-
+function topAuthors(numOfBooks, books) {
+    let authors = askAI(`based on these ${numOfBooks} books, return the top 3 authors in a javascript array as strings separated by commas:\n${books}`)
+    return authors
+}
 
 // fiction vs non fiction stats
+function fictionVsNonfiction(numOfBooks, books) {
+    let percents = askAI(`based on these ${numOfBooks} books, return the percentage of fiction vs non-fiction in a javascript array as numbers representing percentages separated by commas:\n${books}`)
+    return percents
+}
 
 // top 5 genres
+function topGenres(numOfBooks, books) {
+    let genres = askAI(`based on these ${numOfBooks} books, return the top 5 genres in a javascript array as strings separated by commas:\n${books}`)
+    return genres
+}
 
 /*
 TODO
@@ -141,5 +152,5 @@ async function askAI(message) {
 
     let body = await fetch(url, payload)
     let response = await body.json()
-    return response
+    return response.choices[0].message.content
 }
