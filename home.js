@@ -68,7 +68,7 @@ for (i=1; i<5; i++) {
     genreSection.appendChild(genre)
 }
 
-let recs = recommended.split(",")
+let recs = recommended.split("/")
 recs[0] = recs[0].slice(1)
 recs[2] = recs[2].slice(0, -1)
 let recSection = document.getElementById('recommendation-cards')
