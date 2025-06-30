@@ -86,11 +86,28 @@ const body = await fetch(url, payload)
 const response = await body.json()
 
 let name = response.display_name
-let pfp = response.images[0].url // get url of image after
+let pfp = response.images[0].url 
 return {name, pfp}
 }
 
-// finished books and currently listening books
+// saved books in library 
+async function getBooks() {
+const url = "https://api.spotify.com/v1/me/audiobooks"
+const payload = {
+    method: 'GET',
+    headers: {
+        'Authorization': 'Bearer ' + access_token
+    },
+}
+const body = await fetch(url, payload)
+const response = await body.json()
+
+let numOfBooks = response.total
+let authors = response.items.authors[0].name 
+let covers = response.images[0].url
+let bookName = response.name
+return {numOfBooks, authors, covers, bookName}
+}
 
 // hrs reading per day, per month, per year
 
