@@ -3,6 +3,8 @@
 const clientID = '2757b9bf2e4649e7903aaefbc856adca'
 const redirectURI = window.location.origin + '/bookify/callback'
 const clientSECRET = '1db54a4fd96a40fb818461ef3a3149e7'
+let access_token;
+let refresh_token;
 
 const onLoad = async () => {
     const storedState = localStorage.getItem('state') ?? ''
@@ -40,22 +42,41 @@ const onLoad = async () => {
         let data = await tokens.json()
         console.log(data)
 
-        //access_token = getTokens(authOptions.body.toString())[0]
-        //refresh_token = getTokens(authOptions.body.toString())[1]
+        access_token = data.access_token
+        refresh_token = data.refresh_token
 
     }
 }
 
 window.onload = onLoad
 
-// function getTokens(authOptions) {
+async function refreshTokens() {
+    const url = "https://accounts.spotify.com/api/token"
+    const payload = {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/x-www-form-urlencoded'
+        },
+        body: new URLSearchParams({
+            grant_type: 'refresh_token',
+            refresh_token: refresh_token,
+            client_id: clientID
+        }),
+    }
+    const body = await fetch(url, payload)
+    const response = await body.json()
 
-// }
+    access_token = response.access_token
+    if (response.refresh_token) {
+        refresh_token = response.refresh_token
+    }
+    return {access_token, refresh_token}
+}
 
 /*
 TODO
 - create getTokens function to get access and refresh token
 - create API calls for each type of data need
-- 
+- go to main page and supply all found data
 
 */
