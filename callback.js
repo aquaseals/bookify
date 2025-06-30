@@ -86,7 +86,7 @@ const body = await fetch(url, payload)
 const response = await body.json()
 
 let name = response.display_name
-let pfp = response.images // get url of image after
+let pfp = response.images[0].url // get url of image after
 return {name, pfp}
 }
 
