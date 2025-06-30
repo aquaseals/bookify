@@ -64,7 +64,7 @@ button:hover {
     var(--_c) right,
     var(--_c) bottom;
   background-size: 12px 12px;
-  animation: l7 1s 10;
+  animation: l7 1s infinite;
       position: absolute;
     left: 46vw;
     top: 46vh;
