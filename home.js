@@ -1,6 +1,9 @@
 let allData = localStorage.getItem("allData")
 allData = JSON.parse(allData)
 
+console.log(`alldata home version -> ${allData}`)
+
+
 let profileInfo = allData[0]
 let bookInfo = allData[1]
 let authorInfo = allData[2]

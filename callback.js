@@ -53,6 +53,7 @@ const onLoad = async () => {
         allData.push(await topGenres(bookData.numOfBooks, bookData.books))
         allData.push(await fictionVsNonfiction(bookData.numOfBooks, bookData.books))
         allData.push(await recommend(bookData.books))
+        console.log(`alldata callback version -> ${allData}`)
         localStorage.setItem("allData", JSON.stringify(allData))
         window.location.href = window.location.origin + "/bookify/home"
 
