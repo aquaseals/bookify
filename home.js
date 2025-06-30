@@ -57,9 +57,8 @@ document.getElementById(`fiction-percent`).innerHTML = `${f}%`
 document.getElementById(`nonfiction-percent`).innerHTML = `${nf}%`
 
 let genres = genreInfo.split(",")
-genres.slice(0, 5)
+genres = genres.slice(0, 4)
 genres[0] = genres[0].slice(1)
-genres[4] = genres[4].slice(0, -2)
 let genreSection = document.getElementsByClassName('genre-list')[0]
 for (i=1; i<5; i++) {
     let genre = document.createElement('h3')
