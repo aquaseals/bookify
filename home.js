@@ -17,11 +17,11 @@ console.log(profileInfo, bookInfo, authorInfo, genreInfo, fictionInfo, recommend
 
 document.getElementById('username').innerHTML = profileInfo.name
 try {
-src = profileInfo.url
+src = profileInfo.pfp.url
+document.getElementById('pfp').src = src
 } catch (err) {
     console.log(err)
 }
-document.getElementById('pfp').src = src
 
 document.getElementById(`total-books`).innerHTML = bookInfo.numOfBooks
 let totChapters = 0
