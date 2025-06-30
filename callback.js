@@ -97,7 +97,7 @@ const body = await fetch(url, payload)
 const response = await body.json()
 
 let name = response.display_name
-try{let pfp = response.images[0].url } catch (err) {let pfp = ''}
+let pfp = response.images[0] // NOT CHECKING URL HERE
 return {name, pfp}
 }
 
