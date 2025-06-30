@@ -4,9 +4,75 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>bookify</title>
+    <link rel="stylesheet" href="./style.css">
 </head>
 <body>
-    <p>main page</p>
+    <h1 id="head">bookify</h1>
+
+    <div id="page">
+        <div class="section" id="profile">
+        <img src="" alt="Profile Picture" id="pfp">
+        <div>
+            <p id="username">Loading...</p>
+            <p style="font-size: 2vw; color: #666;">Your Audiobook Journey</p>
+        </div>
+    </div>
+
+    <div class="section" id="library">
+        <h2>📚 Your Library</h2>
+        <div class="stat-grid">
+            <div class="stat-card">
+                <span class="stat-number" id="total-books">0</span>
+                <span class="stat-label">Total Audiobooks</span>
+            </div>
+            <div class="stat-card">
+                <span class="stat-number" id="total-chapters">0</span>
+                <span class="stat-label">Total Chapters</span>
+            </div>
+            <div class="stat-card">
+                <span class="stat-number" id="avg-chapters">0</span>
+                <span class="stat-label">Avg Chapters/Book</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="section" id="authors">
+        <h2>✍️ Top Authors</h2>
+        <div class="author-list" id="author-tags">
+            <!-- Author tags will be populated here -->
+        </div>
+    </div>
+
+    <div class="section" id="fnf">
+        <h2>📖 Fiction vs Non-Fiction</h2>
+        <div class="fiction-nonfiction">
+            <div class="fnf-card">
+                <div class="percentage-circle fiction-circle" id="fiction-percent">0%</div>
+                <p style="font-size: 2vw; color: #b21642;">Fiction</p>
+            </div>
+            <div class="fnf-card">
+                <div class="percentage-circle nonfiction-circle" id="nonfiction-percent">0%</div>
+                <p style="font-size: 2vw; color: #e9ba5b;">Non-Fiction</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="section" id="genres">
+        <h2>🎭 Top Genres</h2>
+        <div class="genre-list" id="genre-tags">
+            <!-- Genre tags will be populated here -->
+        </div>
+    </div>
+
+    <div class="section" id="recs">
+        <h2>💡 Recommended for You</h2>
+        <div class="rec-grid" id="recommendation-cards">
+            <!-- Recommendation cards will be populated here -->
+        </div>
+    </div>
+
+    </div>
+    
     <script src="home.js"></script>
 </body>
 </html>

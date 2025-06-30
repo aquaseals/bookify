@@ -22,6 +22,7 @@ body {
 
 #head {
     font-size: 10vw;
+    text-align: center;
 }
 
 .start {
@@ -70,3 +71,197 @@ button:hover {
     top: 46vh;
 }
 @keyframes l7 {to{transform: rotate(.5turn)}}
+
+#page {
+    width: 70%;
+    margin-inline: 15%;
+}
+
+.section {
+            background: white;
+            border-radius: 2vw;
+            padding: 3vw;
+            margin-bottom: 3vw;
+            box-shadow: 0 4px 15px rgba(178, 22, 66, 0.1);
+            border: 2px solid transparent;
+            background-clip: padding-box;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .section:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(178, 22, 66, 0.2);
+        }
+
+        .section h2 {
+            font-size: 4vw;
+            margin-bottom: 2vw;
+            text-align: center;
+        }
+
+        #profile {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 3vw;
+            text-align: center;
+        }
+
+        #pfp {
+            width: 15vw;
+            height: 15vw;
+            border-radius: 50%;
+            border: 3px solid #b21642;
+            object-fit: cover;
+        }
+
+        #username {
+            font-size: 4vw;
+            color: #b21642;
+            font-weight: 600;
+        }
+
+        .stat-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2vw;
+            margin-top: 2vw;
+        }
+
+        .stat-card {
+            background: linear-gradient(135deg, #b21642, #e9ba5b);
+            color: white;
+            padding: 2vw;
+            border-radius: 1.5vw;
+            text-align: center;
+            font-weight: 600;
+        }
+
+        .stat-number {
+            font-size: 3vw;
+            display: block;
+            margin-bottom: 1vw;
+        }
+
+        .stat-label {
+            font-size: 1.5vw;
+            opacity: 0.9;
+        }
+
+        .author-list, .genre-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1.5vw;
+            justify-content: center;
+            margin-top: 2vw;
+        }
+
+        .author-tag, .genre-tag {
+            background: linear-gradient(45deg, #b21642, #e9ba5b);
+            color: white;
+            padding: 1vw 2vw;
+            border-radius: 2vw;
+            font-size: 1.8vw;
+            font-weight: 500;
+        }
+
+        .fiction-nonfiction {
+            display: flex;
+            justify-content: space-around;
+            margin-top: 2vw;
+        }
+
+        .fnf-card {
+            text-align: center;
+            flex: 1;
+            margin: 0 1vw;
+        }
+
+        .percentage-circle {
+            width: 12vw;
+            height: 12vw;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3vw;
+            font-weight: bold;
+            color: white;
+            margin: 0 auto 1vw;
+        }
+
+        .fiction-circle {
+            background: linear-gradient(135deg, #b21642, #902946);
+        }
+
+        .nonfiction-circle {
+            background: linear-gradient(135deg, #e9ba5b, #d4a54a);
+        }
+
+        .rec-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2vw;
+            margin-top: 2vw;
+        }
+
+        .rec-card {
+            background: linear-gradient(135deg, rgba(178, 22, 66, 0.1), rgba(233, 186, 91, 0.1));
+            border: 2px solid #b21642;
+            border-radius: 1.5vw;
+            padding: 2vw;
+            text-align: center;
+            font-size: 1.8vw;
+            color: #b21642;
+            font-weight: 500;
+        }
+
+        .emoji {
+            font-size: 3vw;
+            margin-bottom: 1vw;
+        }
+
+        @media (max-width: 768px) {
+            body {
+                padding: 4vw;
+            }
+            
+            #head {
+                font-size: 10vw;
+            }
+            
+            .section h2 {
+                font-size: 6vw;
+            }
+            
+            #pfp {
+                width: 20vw;
+                height: 20vw;
+            }
+            
+            #username {
+                font-size: 5vw;
+            }
+            
+            .stat-number {
+                font-size: 4vw;
+            }
+            
+            .stat-label {
+                font-size: 2.5vw;
+            }
+            
+            .author-tag, .genre-tag {
+                font-size: 2.5vw;
+            }
+            
+            .percentage-circle {
+                width: 20vw;
+                height: 20vw;
+                font-size: 4vw;
+            }
+            
+            .rec-card {
+                font-size: 2.5vw;
+            }
+        }

@@ -125,25 +125,25 @@ return {numOfBooks, books}
 
 // top authors
 async function topAuthors(numOfBooks, books) {
-    let authors = await askAI(`based on the following ${numOfBooks} books, return the top 3 authors in a javascript array as strings separated by commas:\n${books}`)
+    let authors = await askAI(`Return ONLY a JavaScript array with the top 3 authors from these ${numOfBooks} books. Format: ["Author 1", "Author 2", "Author 3"]. No explanation, no additional text, just the array:\n${books}`)
     return authors
 }
 
 // fiction vs non fiction stats
 async function fictionVsNonfiction(numOfBooks, books) {
-    let percents = await askAI(`based on the following ${numOfBooks} books, return the percentage of fiction vs non-fiction in a javascript array as numbers representing percentages separated by commas:\n${books}`)
+    let percents = await askAI(`Return ONLY a JavaScript array with fiction and non-fiction percentages from these ${numOfBooks} books. Format: [fiction_percentage, nonfiction_percentage] where numbers are integers that sum to 100. No explanation, no additional text, just the array:\n${books}`)
     return percents
 }
 
 // top 5 genres
 async function topGenres(numOfBooks, books) {
-    let genres = await askAI(`based on the following ${numOfBooks} books, return the top 5 genres in a javascript array as strings separated by commas:\n${books}`)
+    let genres = await askAI(`Return ONLY a JavaScript array with the top 5 genres from these ${numOfBooks} books. Format: ["Genre 1", "Genre 2", "Genre 3", "Genre 4", "Genre 5"]. No explanation, no additional text, just the array:\n${books}`)
     return genres
 }
 
 // 3 book recs
 async function recommend(books) {
-    let recs = await askAI(`based on the following books, return 3 book recommendations in a javascript array as strings separated by commas:\n${books}`)
+    let recs = await askAI(`Return ONLY a JavaScript array with 3 book recommendations based on these books. Format: ["Book Title 1", "Book Title 2", "Book Title 3"]. No explanation, no additional text, just the array:\n${books}`)
     return recs
 }
 
