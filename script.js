@@ -26,7 +26,8 @@ document.getElementById('connect').addEventListener('click', async function conn
         'user-read-currently-playing',
         "user-read-playback-state",
         'user-library-read',
-        'user-read-private'
+        'user-read-private',
+        'user-read-email'
     ].join(' ')
 
     if (access_token && refresh_token) {

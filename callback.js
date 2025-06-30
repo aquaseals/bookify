@@ -34,7 +34,24 @@ const onLoad = async () => {
         refresh_token = response.refresh_token
     }
     return {access_token, refresh_token}
-}
+    }
+
+    // user info
+    async function getProfile() {
+    const url = "https://api.spotify.com/v1/me"
+    const payload = {
+        method: 'GET',
+        headers: {
+            'Authorization': 'Basic ' + btoa(clientID + ':' + clientSECRET)
+        },
+    }
+    const body = await fetch(url, payload)
+    const response = await body.json()
+
+    let name = response.display_name
+    let pfp = response.images.url
+    return {name, pfp}
+    }
 
     if (error) {
         console.log(`auth failed`, error)
@@ -75,9 +92,15 @@ window.onload = onLoad
 
 
 
+// finished books and currently listening books
+
+// hrs reading per day, per month, per year
+
+// top book genres
+
 /*
 TODO
-- create refreshTokens function to get access and refresh token -> done
+- create refreshTokens function to get access and refresh token -> done -> js figured out i dont even need this T-T but im keeping it even though im pretty sure it doesnt work..? too much effort js to delete </3
 - create API calls for each type of data need
 - go to main page and supply all found data
 

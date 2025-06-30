@@ -3,8 +3,6 @@ const express = require('express')
 const { queryObjects } = require('v8')
 const QueryString = require('qs')
 const { stat } = require('fs')
-const https = require('https')
-const querystring = require('querystring')
 
 var LocalStorage = require('node-localstorage').LocalStorage,
 localStorage = new LocalStorage('./scratch');
@@ -59,57 +57,48 @@ function generateRandomString(length) {
     return text;
 }
 
-app.get('/callback', function(req, res) {
-    const code = req.query.code || null;
-    const state = req.query.state || null;
+app.get('/callback', async function(req, res) {
+  var code = req.query.code || null;
+  var state = req.query.state || null;
 
-    if (state === null || state !== storedState) {
-        console.log(state, storedState);
-        res.redirect('/#' +
-          QueryString.stringify({
-            error: 'state_mismatch'
-          }));
-      } else{
-        const postData = querystring.stringify({
-            code: code,
-            redirect_uri: redirectURI,
-            grant_type: 'authorization_code'
-        });
+  if (state === null || state !== storedState) {
+    console.log(state, storedState);
+    res.redirect('/#' +
+      QueryString.stringify({
+        error: 'state_mismatch'
+      }));
+  } else{
+    let authOptions = {
+      url: 'https://accounts.spotify.com/api/token',
+      form: {
+        code: code,
+        redirect_uri: redirectURI,
+        grant_type: 'authorization_code'
+      },
+      headers: {
+        'content-type': 'application/x-www-form-urlencoded',
+        'Authorization': 'Basic ' + (new Buffer.from(clientID + ':' + clientSECRET).toString('base64'))
+      },
+      json: true
+    };
+    console.log(authOptions)
+    localStorage.setItem('authOption', JSON.stringify(authOptions))
 
-        const authHeader = Buffer.from(clientID + ':' + clientSECRET).toString('base64');
+    const response = await fetch(authOptions.url, {
+        method: 'POST',
+        headers: authOptions.headers,
+        body: new URLSearchParams(authOptions.form)
+    });
 
-        const options = {
-            hostname: 'accounts.spotify.com',
-            path: '/api/token',
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/x-www-form-urlencoded',
-                'Authorization': 'Basic ' + authHeader,
-                'Content-Length': Buffer.byteLength(postData)
-            }
-        };
-
-        const request = https.request(options, (response) => {
-            let body = '';
-            response.on('data', (chunk) => { body += chunk; });
-            response.on('end', () => {
-                try {
-                    const data = JSON.parse(body);
-                    // You can now send the access token to the client, or store it in a session
-                    res.send(data); // or redirect with token in query, or set a cookie, etc.
-                } catch (e) {
-                    res.redirect('/#' + QueryString.stringify({ error: 'invalid_token' }));
-                }
-            });
-        });
-
-        request.on('error', (e) => {
-            res.redirect('/#' + QueryString.stringify({ error: 'invalid_token' }));
-        });
-
-        request.write(postData);
-        request.end();
-      }
+    if (response.ok) {
+        const data = await response.json();
+        const { access_token, refresh_token } = data;
+        console.log('Access token:', access_token);
+        console.log('Refresh token:', refresh_token)
+    } else {
+        console.error('Error:', await response.text());
+    }
+  }
 });
 
 app.listen(PORT, () => {
