@@ -79,14 +79,14 @@ const url = "https://api.spotify.com/v1/me"
 const payload = {
     method: 'GET',
     headers: {
-        'Authorization': 'Basic ' + access_token
+        'Authorization': 'Bearer ' + access_token
     },
 }
 const body = await fetch(url, payload)
 const response = await body.json()
 
 let name = response.display_name
-let pfp = response.images[0]?.url
+let pfp = response.images.url
 return {name, pfp}
 }
 
