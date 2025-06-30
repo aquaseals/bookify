@@ -113,27 +113,33 @@ return {numOfBooks, books}
 }
 
 // top authors
-function topAuthors(numOfBooks, books) {
-    let authors = askAI(`based on these ${numOfBooks} books, return the top 3 authors in a javascript array as strings separated by commas:\n${books}`)
+async function topAuthors(numOfBooks, books) {
+    let authors = await askAI(`based on the following ${numOfBooks} books, return the top 3 authors in a javascript array as strings separated by commas:\n${books}`)
     return authors
 }
 
 // fiction vs non fiction stats
-function fictionVsNonfiction(numOfBooks, books) {
-    let percents = askAI(`based on these ${numOfBooks} books, return the percentage of fiction vs non-fiction in a javascript array as numbers representing percentages separated by commas:\n${books}`)
+async function fictionVsNonfiction(numOfBooks, books) {
+    let percents = await askAI(`based on the following ${numOfBooks} books, return the percentage of fiction vs non-fiction in a javascript array as numbers representing percentages separated by commas:\n${books}`)
     return percents
 }
 
 // top 5 genres
-function topGenres(numOfBooks, books) {
-    let genres = askAI(`based on these ${numOfBooks} books, return the top 5 genres in a javascript array as strings separated by commas:\n${books}`)
+async function topGenres(numOfBooks, books) {
+    let genres = await askAI(`based on the following ${numOfBooks} books, return the top 5 genres in a javascript array as strings separated by commas:\n${books}`)
     return genres
+}
+
+// 3 book recs
+async function recommend(books) {
+    let recs = await askAI(`based on the following books, return 3 book recommendations in a javascript array as strings separated by commas:\n${books}`)
+    return recs
 }
 
 /*
 TODO
 - create refreshTokens function to get access and refresh token -> done -> js figured out i dont even need this T-T but im keeping it even though im pretty sure it doesnt work..? too much effort js to delete </3
-- create API calls for each type of data need
+- create API calls for each type of data need -> done
 - go to main page and supply all found data
 
 */
