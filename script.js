@@ -4,7 +4,6 @@ let clientSECRET = '1db54a4fd96a40fb818461ef3a3149e7'
 
 //let isConnected = false
 let storedState = ''
-let client_id;
 let access_token;
 let refresh_token;
 let code;
