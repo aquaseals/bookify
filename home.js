@@ -35,13 +35,13 @@ let authors = authorInfo.split(",")
 let authorSection = document.getElementsByClassName('author-list')[0]
 for (i=1; i<4; i++) {
     let author = document.createElement('h3')
-    author.style.color = "black"
+    author.style.color = "black !important"
     let name = authors[i-1]
     if (i === 1) {
         name = name.slice(1)
     } 
     if (i === 2) {
-        name = name.slice(1, -1)
+        name = name.slice(0, -1)
     }
     if (i === 3) {
         name = name.slice(0, -1)
@@ -52,7 +52,7 @@ for (i=1; i<4; i++) {
 
 let percents = fictionInfo.split(" ")
 let f = percents[0].slice(1)
-let nf = percents[0].slice(-1)
+let nf = percents[1].slice(0, -1)
 document.getElementById(`fiction-percent`).innerHTML = `${f}%`
 document.getElementById(`fiction-percent`).innerHTML = `${nf}%`
 
@@ -62,7 +62,7 @@ genres[4] = genres[4].slice(-2)
 let genreSection = document.getElementsByClassName('genre-list')[0]
 for (i=1; i<5; i++) {
     let genre = document.createElement('h3')
-    genre.style.color = "black"
+    genre.style.color = "black !important"
     let g = genre[i-1]
     genre.innerHTML = `${i}. ${g}`
     genreSection.appendChild(genre)
