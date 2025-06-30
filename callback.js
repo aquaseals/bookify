@@ -103,10 +103,12 @@ const body = await fetch(url, payload)
 const response = await body.json()
 
 let numOfBooks = response.total
-let authors = response.items.authors.name 
-let covers = response.images[0].url
-let bookName = response.name
-return {numOfBooks, authors, covers, bookName}
+    let books = response.items.map(item => ({
+        name: item.audiobook.name,
+        authors: item.audiobook.authors.map(author => author.name).join(', '),
+        cover: item.audiobook.images[0]?.url
+    }))
+return {numOfBooks, books}
 }
 
 // hrs reading per day, per month, per year
