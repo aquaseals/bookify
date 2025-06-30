@@ -103,10 +103,11 @@ const body = await fetch(url, payload)
 const response = await body.json()
 
 let numOfBooks = response.total
-    let books = response.items.map(item => ({
-        name: item.audiobook.name,
-        authors: item.audiobook.authors.map(author => author.name).join(', '),
-        cover: item.audiobook.images[0]?.url
+let books = response.items.map(item => ({
+        name: item.name,                                           // Book name
+        authors: item.authors.map(author => author.name).join(', '), // Author names
+        cover: item.images[0]?.url,                               // Book cover
+        chapters: item.total_chapters                             // Number of chapters
     }))
 return {numOfBooks, books}
 }
