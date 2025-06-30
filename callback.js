@@ -17,7 +17,7 @@ const onLoad = async () => {
         window.location.href = window.location.origin + '/bookify/state_mismatch'
     } else {
         authOptions = {
-        //url: 'https://accounts.spotify.com/api/token', // getting auth token to get refresh and access token
+        //url: 'https://accounts.spotify.com/api/token', 
         headers: {
             'content-type': 'application/x-www-form-urlencoded',
             'Authorization': 'Basic ' + (new Buffer.from(clientID + ':' + clientSECRET).toString('base64'))
@@ -29,13 +29,26 @@ const onLoad = async () => {
         })
         };
 
-        let tokens = await fetch('https://accounts.spotify.com/api/token', authOptions)
+        let tokens = await fetch('https://accounts.spotify.com/api/token', authOptions) // getting auth token to get refresh and access token
         let data = await tokens.json()
+        console.log(data)
 
-        access_token = getTokens(authOptions.body.toString())[0]
-        refresh_token = getTokens(authOptions.body.toString())[1]
+        //access_token = getTokens(authOptions.body.toString())[0]
+        //refresh_token = getTokens(authOptions.body.toString())[1]
 
     }
 }
 
 window.onload = onLoad
+
+// function getTokens(authOptions) {
+
+// }
+
+/*
+TODO
+- create getTokens function to get access and refresh token
+- create API calls for each type of data need
+- 
+
+*/
