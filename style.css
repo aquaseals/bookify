@@ -53,3 +53,20 @@ footer a {
 button:hover {
     cursor: pointer;
 }
+
+.loader {
+  width: 50px;
+  aspect-ratio: 1;
+  --_c:no-repeat radial-gradient(farthest-side,#b21642 92%,#0000);
+  background: 
+    var(--_c) top,
+    var(--_c) left,
+    var(--_c) right,
+    var(--_c) bottom;
+  background-size: 12px 12px;
+  animation: l7 1s infinite;
+      position: absolute;
+    left: 46vw;
+    top: 46vh;
+}
+@keyframes l7 {to{transform: rotate(.5turn)}}
