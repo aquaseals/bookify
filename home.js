@@ -56,7 +56,7 @@ let nf = percents[1].slice(0, -1)
 document.getElementById(`fiction-percent`).innerHTML = `${f}%`
 document.getElementById(`nonfiction-percent`).innerHTML = `${nf}%`
 
-let genres = genreInfo.split(",")
+let genres = genreInfo.split("/")
 genres = genres.slice(0, 4)
 genres[0] = genres[0].slice(1)
 let genreSection = document.getElementsByClassName('genre-list')[0]
