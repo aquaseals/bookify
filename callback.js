@@ -48,12 +48,12 @@ const onLoad = async () => {
         let bookData = await getBooks()
         let allData = []
         allData.push(await getProfile())
-        allData.push(await getBooks())
+        allData.push(bookData)
         allData.push(await topAuthors(bookData.numOfBooks, bookData.books))
         allData.push(await topGenres(bookData.numOfBooks, bookData.books))
         allData.push(await fictionVsNonfiction(bookData.numOfBooks, bookData.books))
         allData.push(await recommend(bookData.books))
-        localStorage.setItem("allData", allData)
+        localStorage.setItem("allData", JSON.stringify(allData))
         window.location.href = window.location.origin + "/bookify/home"
 
     }

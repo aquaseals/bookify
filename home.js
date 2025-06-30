@@ -1,5 +1,5 @@
 let allData = localStorage.getItem("allData")
-allData = JSON.stringify(allData, null, 2)
+allData = JSON.parse(allData)
 
 let profileInfo = allData[0]
 let bookInfo = allData[1]
