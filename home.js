@@ -74,7 +74,7 @@ recs[2] = recs[2].slice(0, -1)
 let recSection = document.getElementById('recommendation-cards')
 for (i=1; i<4; i++) {
     let rec = document.createElement('h3')
-    let name = rec[i-1]
+    let name = recs[i-1]
     rec.innerHTML = `${i}. ${name}`
     recSection.appendChild(rec)
 }

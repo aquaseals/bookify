@@ -198,6 +198,15 @@ button:hover {
             background: linear-gradient(135deg, #e9ba5b, #d4a54a);
         }
 
+        .rec-grid {
+            display: flex;
+            flex-direction: row;
+        }
+
+        .rec-grid, .genre-tag, .author-tag {
+            color: #666;
+        }
+
 
         @media (max-width: 768px) {
             body {
