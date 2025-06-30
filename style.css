@@ -198,28 +198,6 @@ button:hover {
             background: linear-gradient(135deg, #e9ba5b, #d4a54a);
         }
 
-        .rec-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2vw;
-            margin-top: 2vw;
-        }
-
-        .rec-card {
-            background: linear-gradient(135deg, rgba(178, 22, 66, 0.1), rgba(233, 186, 91, 0.1));
-            border: 2px solid #b21642;
-            border-radius: 1.5vw;
-            padding: 2vw;
-            text-align: center;
-            font-size: 1.8vw;
-            color: #b21642;
-            font-weight: 500;
-        }
-
-        .emoji {
-            font-size: 3vw;
-            margin-bottom: 1vw;
-        }
 
         @media (max-width: 768px) {
             body {
@@ -261,7 +239,5 @@ button:hover {
                 font-size: 4vw;
             }
             
-            .rec-card {
-                font-size: 2.5vw;
-            }
+
         }
