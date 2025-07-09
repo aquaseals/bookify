@@ -1,8 +1,16 @@
 # bookify
 a website that lets you see your audiobook stats on spotify and gives you personalized book recommendations, but aesthetic! uses spotify's web api and hackclub's ai service to formulate answers.
 
+<div align="center">
+  <a href="https://shipwrecked.hackclub.com/?t=ghrm" target="_blank">
+    <img src="https://hc-cdn.hel1.your-objectstorage.com/s/v3/739361f1d440b17fc9e2f74e49fc185d86cbec14_badge.png" 
+         alt="This project is part of Shipwrecked, the world's first hackathon on an island!" 
+         style="width: 35%;">
+  </a>
+</div>
+
 ## Demo
-[try it!](aquaseals.github.io/bookify/)
+[try it!](aquaseals.github.io/bookify/) - Note: doesn't work unless you are an approved user (Spotify Web API limitations)
 
 ## Features/Stats
 1. total audiobooks and chapters in your library
