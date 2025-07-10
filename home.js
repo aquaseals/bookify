@@ -40,9 +40,6 @@ for (i=1; i<4; i++) {
     if (i === 1) {
         name = name.slice(1)
     } 
-    if (i === 2) {
-        name = name.slice(0, -1)
-    }
     if (i === 3) {
         name = name.slice(0, -1)
     }
