@@ -65,7 +65,6 @@ for (i=1; i<5; i++) {
 }
 
 let recs = recommended.split("/")
-recs[0] = recs[0].slice(1)
 let recSection = document.getElementById('recommendation-cards')
 for (i=1; i<4; i++) {
     let rec = document.createElement('h3')
