@@ -42,8 +42,8 @@ for (i=1; i<4; i++) {
 }
 
 let percents = fictionInfo.split(" ")
-document.getElementById(`fiction-percent`).innerHTML = `${f}%`
-document.getElementById(`nonfiction-percent`).innerHTML = `${nf}%`
+document.getElementById(`fiction-percent`).innerHTML = `${percents[0]}%`
+document.getElementById(`nonfiction-percent`).innerHTML = `${percents[1]}%`
 
 let genres = genreInfo.split("/")
 genres[0].slice(1)
