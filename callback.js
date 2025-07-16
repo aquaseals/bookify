@@ -26,6 +26,7 @@ const onLoad = async () => {
     } else {
         console.log(clientID, clientSECRET)
         try {
+            
             let authOptions = {
         method: "POST",
         headers: {
@@ -42,6 +43,10 @@ const onLoad = async () => {
         let tokens = await fetch('https://accounts.spotify.com/api/token', authOptions) // getting auth token to get refresh and access token
         let data = await tokens.json()
         console.log(data)
+
+        if (!tokens.ok) {
+                throw new Error(`Token exchange failed with status ${tokens.status}`);
+        }
 
         access_token = data.access_token
         refresh_token = data.refresh_token
