@@ -169,7 +169,8 @@ async function askAI(message) {
         },
         body : JSON.stringify({
             "messages" : [{"role": "user", "content": message}]
-        })
+        }),
+        temperature : 0
     }
 
     let body = await fetch(url, payload)
