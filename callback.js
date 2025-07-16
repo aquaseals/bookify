@@ -145,7 +145,18 @@ ${booksString}`)
 // fiction vs non fiction stats
 async function fictionVsNonfiction(numOfBooks, books) {
     let booksString = JSON.stringify(books, null, 2)    
-    let percents = await askAI(`Return ONLY a JavaScript string with fiction and non-fiction percentages from these ${numOfBooks} books. Format: 'fiction_percentage nonfiction_percentage' where numbers are integers that sum to 100. No explanation, no additional text, just the array:\n${booksString}`)
+    let percents = await askAI(`Count fiction vs non-fiction books from these ${numOfBooks} books. Return ONLY two numbers separated by one space that sum to 100.
+
+CRITICAL: Your response must be EXACTLY: fiction_number nonfiction_number
+
+Example: 65 35
+
+Do not explain.
+Do not show work.
+Just return the two numbers.
+
+Books:
+${booksString}`)
     return percents
 }
 
