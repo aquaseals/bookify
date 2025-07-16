@@ -45,11 +45,15 @@ const onLoad = async () => {
 
         access_token = data.access_token
         refresh_token = data.refresh_token
+
+        localStorage.setItem("access_token", access_token)
+        localStorage.setItem("refresh_token", refresh_token)
+
         } catch {
             console.log('already logged in')
+            let storedAccess = localStorage.getItem('access_token') ?? ''
+            let storedRefresh = localStorage.getItem('refresh_token') ?? ''
         }
-
-        refreshTokens()
 
         let bookData = await getBooks()
         let allData = []
