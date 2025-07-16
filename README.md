@@ -21,11 +21,13 @@ a website that lets you see your audiobook stats on spotify and gives you person
 
 ## How to host/run this website?
 1. fork this repo
-2. go to settings, pages and host the website with github pages
+2. go to the repo settings, pages tab and host the website with github pages
 3. open up [spotify for developers dashboard](https://developer.spotify.com/dashboard)
 4. create a new app, select Web API
 5. replace redirect uris with the github pages link to the website + "/callback"
-6. go through callback.js, script.js, and home.js and replace any github page links, clientID, clientSECRET and redirectURI with your own
+   <img width="1470" height="912" alt="Screenshot 2025-07-16 at 8 25 10 AM" src="https://github.com/user-attachments/assets/8d0979d3-69d7-466e-8b5d-367cfefb039b" />
+   should look something like this
+6. go to script.js and replace the clientID and the clientSECRET with the ones provided in your spotify app (can be found in the dashboard) + save changes
 7. open website through github pages, and you're done!
 
 ## Found a bug?
