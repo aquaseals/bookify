@@ -53,6 +53,8 @@ const onLoad = async () => {
             console.log('already logged in')
             let storedAccess = localStorage.getItem('access_token') ?? ''
             let storedRefresh = localStorage.getItem('refresh_token') ?? ''
+            access_token = storedAccess
+            refresh_token = storedRefresh
         }
 
         let bookData = await getBooks()
@@ -68,6 +70,7 @@ const onLoad = async () => {
         document.getElementById('loader').style.visibility = "hidden"
         document.getElementById('page').style.visibility = "visible"
         document.getElementById('head').style.visibility = "visible"
+        document.title = "bookify"
 
         let profileInfo = allData[0]
         let bookInfo = allData[1]
