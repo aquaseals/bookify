@@ -42,8 +42,6 @@ for (i=1; i<4; i++) {
 }
 
 let percents = fictionInfo.split(" ")
-let f = percents[0].slice(1)
-let nf = percents[1].slice(0, -1)
 document.getElementById(`fiction-percent`).innerHTML = `${f}%`
 document.getElementById(`nonfiction-percent`).innerHTML = `${nf}%`
 
