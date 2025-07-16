@@ -23,7 +23,7 @@ body {
 #head {
     font-size: 10vw;
     text-align: center;
-    visibility: hidden;
+    visibility: visible;
 }
 
 .start {
