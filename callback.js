@@ -127,7 +127,18 @@ return {numOfBooks, books}
 // top authors
 async function topAuthors(numOfBooks, books) {
     let booksString = JSON.stringify(books, null, 2)
-    let authors = await askAI(`Analyze these ${numOfBooks} books and identify the 3 most frequently appearing authors. Count author appearances and return ONLY the top 3 in this exact format: "Author1/Author2/Author3". No explanations, no quotes, no additional text:\n${booksString}`)
+    let authors = await askAI(`You must count author appearances in these ${numOfBooks} books and return ONLY the top 3 most frequent authors.
+
+CRITICAL: Your response must be EXACTLY in this format: Author1/Author2/Author3
+
+Do not explain your process.
+Do not show counting.
+Do not add any other text.
+Do not use quotes.
+Just return the three author names separated by forward slashes.
+
+Books:
+${booksString}`)
     return authors
 }
 
@@ -141,14 +152,33 @@ async function fictionVsNonfiction(numOfBooks, books) {
 // top 5 genres
 async function topGenres(numOfBooks, books) {
     let booksString = JSON.stringify(books, null, 2)
-    let genres = await askAI(`based on these ${numOfBooks} books. Format: Genre 1/Genre 2/Genre 3/Genre 4/Genre 5, what would you say are the top 5 genres? Return ONLY a JavaScript string with your opinion. No explanation, no additional text, just the string:\n${booksString}`)
+    let genres = await askAI(`Identify the 5 most common genres from these ${numOfBooks} books.
+
+CRITICAL: Your response must be EXACTLY in this format: Genre1/Genre2/Genre3/Genre4/Genre5
+
+Do not explain your reasoning.
+Do not show your work.
+Do not add any other text.
+Just return the five genres separated by forward slashes.
+
+Books:
+${booksString}`)
     return genres
 }
 
 // 3 book recs
 async function recommend(books) {
     let booksString = JSON.stringify(books, null, 2)
-    let recs = await askAI(`Based on these books, recommend 3 similar books that readers of these titles would enjoy. Return ONLY book titles in this exact format: "Book Title 1/Book Title 2/Book Title 3". No explanations:\n${booksString}`)
+    let recs = await askAI(`Recommend 3 books similar to these titles.
+
+CRITICAL: Your response must be EXACTLY in this format: Book Title 1/Book Title 2/Book Title 3
+
+Do not explain your choices.
+Do not add any other text.
+Just return the three book titles separated by forward slashes.
+
+Books:
+${booksString}`)
     return recs
 }
 
@@ -167,9 +197,9 @@ async function askAI(message) {
         headers : {
             "Content-Type": "application/json"
         },
-        body : JSON.stringify({
-            "messages" : [{"role": "user", "content": message}],
-            temperature : 0
+        body: JSON.stringify({
+            messages: [{"role": "user", "content": message}],
+            temperature: 0
         })
     }
 
