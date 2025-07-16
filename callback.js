@@ -25,7 +25,8 @@ const onLoad = async () => {
         window.location.href = window.location.origin + '/bookify/state_mismatch'
     } else {
         console.log(clientID, clientSECRET)
-        let authOptions = {
+        try {
+            let authOptions = {
         method: "POST",
         headers: {
             'content-type': 'application/x-www-form-urlencoded',
@@ -44,6 +45,9 @@ const onLoad = async () => {
 
         access_token = data.access_token
         refresh_token = data.refresh_token
+        } catch {
+            console.log('already logged in')
+        }
 
         refreshTokens()
 
