@@ -127,14 +127,14 @@ return {numOfBooks, books}
 // top authors
 async function topAuthors(numOfBooks, books) {
     let booksString = JSON.stringify(books, null, 2)
-    let authors = await askAI(`Return ONLY a JavaScript string with the top 3 authors from these ${numOfBooks} books. Format: "Author 1,Author 2,Author 3". No explanation, no additional text, just the string:\n${booksString}`)
+    let authors = await askAI(`Analyze these ${numOfBooks} books and identify the 3 most frequently appearing authors. Count author appearances and return ONLY the top 3 in this exact format: "Author1,Author2,Author3". No explanations, no quotes, no additional text:\n${booksString}`)
     return authors
 }
 
 // fiction vs non fiction stats
 async function fictionVsNonfiction(numOfBooks, books) {
     let booksString = JSON.stringify(books, null, 2)    
-    let percents = await askAI(`Return ONLY a JavaScript string with fiction and non-fiction percentages from these ${numOfBooks} books. Format: 'fiction_percentage nonfiction_percentage' where numbers are integers that sum to 100. No explanation, no additional text, just the array:\n${booksString}`)
+    let percents = await askAI(`Categorize these ${numOfBooks} books as fiction or non-fiction based on their titles and authors. Calculate percentages and return ONLY two integers separated by a space that sum to 100, format: "fiction_percent nonfiction_percent". Example: "65 35". No explanations:\n${booksString}`)
     return percents
 }
 
@@ -148,7 +148,7 @@ async function topGenres(numOfBooks, books) {
 // 3 book recs
 async function recommend(books) {
     let booksString = JSON.stringify(books, null, 2)
-    let recs = await askAI(`Return ONLY a JavaScript string with 3 book recommendations inspired by these books. Format: Book Title 1/Book Title 2/Book Title 3. No explanation, no additional text, just the string:\n${booksString}`)
+    let recs = await askAI(`Based on these books, recommend 3 similar books that readers of these titles would enjoy. Return ONLY book titles in this exact format: "Book Title 1,Book Title 2,Book Title 3". No explanations:\n${booksString}`)
     return recs
 }
 
@@ -168,9 +168,9 @@ async function askAI(message) {
             "Content-Type": "application/json"
         },
         body : JSON.stringify({
-            "messages" : [{"role": "user", "content": message}]
-        }),
-        temperature : 0
+            "messages" : [{"role": "user", "content": message}],
+            temperature : 0
+        })
     }
 
     let body = await fetch(url, payload)
