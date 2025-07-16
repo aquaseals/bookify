@@ -135,7 +135,8 @@ const url = "https://accounts.spotify.com/api/token"
 const payload = {
     method: 'POST',
     headers: {
-        'Content-Type': 'application/x-www-form-urlencoded'
+        'Content-Type': 'application/x-www-form-urlencoded',
+        'Authorization': 'Basic ' + btoa(clientID + ':' + clientSECRET)
     },
     body: new URLSearchParams({
         grant_type: 'refresh_token',
