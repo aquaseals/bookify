@@ -10,7 +10,7 @@ a website that lets you see your audiobook stats on spotify and gives you person
 </div>
 
 ## Demo
-[try it!](aquaseals.github.io/bookify/) - Note: doesn't work unless you are an approved user (Spotify Web API limitations)
+[try it!](aquaseals.github.io/bookify/) - Note: doesn't work unless you are an approved user (Spotify Web API limitations). DM @haya on Hack CLub Slack to be added to the allowed users list.
 
 ## Features/Stats
 1. total audiobooks and chapters in your library
