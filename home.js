@@ -37,12 +37,6 @@ for (i=1; i<4; i++) {
     let author = document.createElement('h3')
     author.class = "author-tag"
     let name = authors[i-1]
-    if (i === 1) {
-        name = name.slice(1)
-    } 
-    if (i === 3) {
-        name = name.slice(0, -1)
-    }
     author.innerHTML = `${i}. ${name}`
     authorSection.appendChild(author)
 }
