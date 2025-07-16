@@ -45,6 +45,8 @@ const onLoad = async () => {
         access_token = data.access_token
         refresh_token = data.refresh_token
 
+        refreshTokens()
+
         let bookData = await getBooks()
         let allData = []
         allData.push(await getProfile())
